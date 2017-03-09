@@ -1,0 +1,4 @@
+com\dsstudio\web\configuration\AppConfig.class
+com\dsstudio\web\configuration\HibernationConfiguration.class
+com\dsstudio\web\configuration\AppInitializer.class
+com\dsstudio\web\controller\AppController.class
