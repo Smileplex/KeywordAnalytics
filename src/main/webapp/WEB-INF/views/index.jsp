@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="realtimeKeyword">
+	<div id="realtimeKeyword" style="float: left;">
 		<h5>네이버</h5>
 		<ul data-agentId='1'>
 
@@ -47,74 +47,120 @@ $(document).ready(function(){
 	});
 });
 </script>
-<script src="//d3js.org/d3.v2.min.js"></script>
-<script>
-
-var width = 960,
-    height = 500
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-var force = d3.layout.force()
-    .gravity(0.05)
-    .distance(100)
-    .charge(-100)
-    .size([width, height]);
-
-d3.json("api/getJsonFile", function(error, json) {
-  if (error) throw error;
-
-  force
-      .nodes(json.nodes)	
-      .links(json.links)
-      .start();
-
-  var link = svg.selectAll(".link")
-      .data(json.links)
-    .enter().append("line")
-      .attr("class", "link");
-
-  var node = svg.selectAll(".node")
-      .data(json.nodes)
-    .enter().append("g")
-      .attr("class", "node")
-      .call(force.drag);
-
-  node.append("image")
-      .attr("xlink:href", "https://github.com/favicon.ico")
-      .attr("x", -8)
-      .attr("y", -8)
-      .attr("width", 16)
-      .attr("height", 16);
-
-  node.append("text")
-      .attr("dx", 12)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name });
-
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  });
-});
-
-</script>
-<style>
-
+	<style>
 .link {
   stroke: #ccc;
 }
 
 .node text {
   pointer-events: none;
-  font: 10px sans-serif;
+  font: 13px sans-serif;
+  color:red;
 }
 </style>
+	<svg width="1280" height="1024"></svg>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(200))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+   
+
+d3.json("api/getJsonFile", function(error, graph) {
+  if (error) throw error;
+
+  /*
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+  */
+  var link = svg.selectAll(".link")
+  .data(graph.links)
+  .enter().append("line")
+  .attr("class", "link");
+
+  /*
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+      .attr("r", 5)
+      .attr("fill", function(d) { return color(d.group); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+  */
+
+  var node = svg.selectAll(".node")
+  .data(graph.nodes)
+	.enter().append("g")
+	  .attr("class", "node")
+	  .call(d3.drag()
+		  .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));	  
+	  
+	
+	node.append("image")
+	  .attr("xlink:href", "https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico")
+	  .attr("x", -8)
+	  .attr("y", -8)
+	  .attr("width", 24)
+	  .attr("height", 24);
+	
+	node.append("text")
+	  .attr("dx", 20)
+	  .attr("dy", ".35em")
+	  .text(function(d) { return d.id });
+
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  }
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+</script>
 </body>
 </html>

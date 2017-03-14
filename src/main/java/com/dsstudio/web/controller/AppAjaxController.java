@@ -22,6 +22,7 @@ import com.dsstudio.web.service.RelatedKeywordService;
 
 @RestController
 public class AppAjaxController {
+
 	@Autowired
 	RealtimeKeywordService realtimeKeywordService;
 
@@ -35,9 +36,9 @@ public class AppAjaxController {
 
 	@RequestMapping(value = "/api/getRelatedKeyword", method = RequestMethod.POST)
 	public String getRelatedKeyword(@RequestParam("name") String name, @RequestParam("agentId") int agentId) {
+		
 		Set<String> nodes = new LinkedHashSet<String>();
 		Set<String> links = new LinkedHashSet<String>();
-		
 		List<RelatedKeyword> relatedKeywords = relatedKeywordService.getRelatedKeywordByNameAndAgentId(name, agentId);
 		System.out.println(relatedKeywords.size());
 		for (RelatedKeyword relatedKeyword : relatedKeywords) {
@@ -65,15 +66,42 @@ public class AppAjaxController {
 
 	@RequestMapping(value = "/api/getJsonFile", method = RequestMethod.GET)
 	public String getJsonFile() {
+		Set<String> nodes = new LinkedHashSet<String>();
+		Set<String> links = new LinkedHashSet<String>();
+		List<RelatedKeyword> relatedKeywords = relatedKeywordService.getRelatedKeywordByNameAndAgentId("±¸Âî", 1);
+		System.out.println(relatedKeywords.size());
+		for (RelatedKeyword relatedKeyword : relatedKeywords) {
+			if (relatedKeyword.getName() != null && relatedKeyword.getRelname() != null
+					&& relatedKeyword.getRelrelname() != null) {
+				nodes.add(relatedKeyword.getName());
+				nodes.add(relatedKeyword.getRelname());
+				nodes.add(relatedKeyword.getRelrelname());
+				links.add(relatedKeyword.getName()+"-"+relatedKeyword.getRelname());
+				links.add(relatedKeyword.getRelname()+"-"+relatedKeyword.getRelrelname());
+			}
+		}
 		String jsonString = "";
 		try {
-			jsonString = new JSONObject().put("nodes",
-					new JSONArray().put(new JSONObject().put("name", "nodes1").put("group", 0))
-							.put(new JSONObject().put("name", "nodes2").put("group", 1)))
-					.put("links", new JSONArray().put(new JSONObject().put("source", "nodes1").put("target","nodes2" ).put("value", 0))
-							.put(new JSONObject().put("source", "nodes2").put("target", "nodes3").put("value", 1)))
+			JSONArray arrIds = new JSONArray();
+			JSONArray arrLinks = new JSONArray();
+			Iterator<String> iter1 = nodes.iterator();
+			Iterator<String> iter2 = links.iterator();
+			
+			while (iter1.hasNext()) {
+				arrIds.put(new JSONObject().put("id",iter1.next()));
+			
+			}
+			
+			while(iter2.hasNext()){
+				String str = iter2.next();
+				arrLinks.put(new JSONObject().put("source", str.split("-")[0]).put("target", str.split("-")[1]));
+			}
+			
+			jsonString = new JSONObject().put("nodes", arrIds)
+					.put("links", arrLinks)
 					.toString();
 			System.out.println(jsonString);
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
