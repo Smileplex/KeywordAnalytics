@@ -19,7 +19,7 @@ public class AppController {
 
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String main(){
-		return "index";
+		return "newIndex";
 	}
 	/*
 	@RequestMapping(value = { "/{name}-{agentId}" }, method = RequestMethod.GET)

@@ -1,13 +1,14 @@
 package com.dsstudio.web.model;
 
-import javax.persistence.Entity;
-
 public class RelatedKeyword {
 	private int agentId;
 	private String name;
 	private String relname;
 	private String relrelname;
-	
+	private StockDetail stockDetail;
+	private StockDetail relstock;
+	private StockDetail relrelstock;
+
 	public int getAgentId() {
 		return agentId;
 	}
@@ -32,4 +33,23 @@ public class RelatedKeyword {
 	public void setRelrelname(String relrelname) {
 		this.relrelname = relrelname;
 	}
+	public StockDetail getStockDetail() {
+		return stockDetail;
+	}
+	public void setStockDetail(StockDetail stockDetail) {
+		this.stockDetail = stockDetail;
+	}
+	public StockDetail getRelstock() {
+		return relstock;
+	}
+	public void setRelstock(StockDetail relstock) {
+		this.relstock = relstock;
+	}
+	public StockDetail getRelrelstock() {
+		return relrelstock;
+	}
+	public void setRelrelstock(StockDetail relrelstock) {
+		this.relrelstock = relrelstock;
+	}
+
 }
