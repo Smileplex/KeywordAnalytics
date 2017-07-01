@@ -60,6 +60,7 @@ public class AppAjaxController {
 		Set<StockMapping> nodes = new LinkedHashSet<StockMapping>();
 //		Set<String> links = new LinkedHashSet<String>();
 		Multimap<String, String> links = HashMultimap.create();
+		Multimap<String, String> depends = HashMultimap.create();
 		List<RelatedKeyword> relatedKeywords = relatedKeywordService.getRelatedKeywordByNameAndAgentId(stock, 1);
 		for (RelatedKeyword relatedKeyword : relatedKeywords) {
 			if (relatedKeyword.getName() != null && relatedKeyword.getRelname() != null
@@ -69,24 +70,43 @@ public class AppAjaxController {
 				nodes.add(new StockMapping(relatedKeyword.getRelrelname(), relatedKeyword.getRelrelstock()));
 				links.put(relatedKeyword.getName(), relatedKeyword.getRelname());
 				links.put(relatedKeyword.getRelname(), relatedKeyword.getRelrelname());
+				depends.put(relatedKeyword.getRelname(), relatedKeyword.getName());
+				depends.put(relatedKeyword.getRelrelname(), relatedKeyword.getRelname());
 			}
 		}
 		JSONObject jsonData = new JSONObject();
 		for(StockMapping node : nodes){
 			JSONObject jsonStock = new JSONObject();
 			try {
-				jsonStock.put("dependedOnBy",links.get(node.getKeywordName()));
-				jsonStock.put("depends", "");
+				jsonStock.put("depends",depends.get(node.getKeywordName()));
+				jsonStock.put("dependedOnBy", links.get(node.getKeywordName()));
 				jsonStock.put("docs","<h2>Anzelma <em>Group 4 long name for docs</em></h2>↵↵<div class=\"alert alert-warning\">No documentation for this object</div>↵↵<h3>Depends on</h3>↵↵<ul>↵<li><a href=\"#obj-Eponine\" class=\"select-object\" data-name=\"Eponine\">Eponine</a></li>↵<li><a href=\"#obj-Thenardier\" class=\"select-object\" data-name=\"Thenardier\">Thenardier</a></li>↵<li><a href=\"#obj-Mme-Thenardier\" class=\"select-object\" data-name=\"Mme.Thenardier\">Mme.Thenardier</a></li>↵</ul>↵↵<h3>Depended on by <em>(none)</em></h3></br>");
 				jsonStock.put("name", node.getKeywordName());
-				jsonStock.put("type","group1");
+				String type = "";
+				double fluctRate = node.getStockDetail().getFluctRate();
+				if(fluctRate > 2.0)
+					type = "2.0% < ";
+				else if(fluctRate > 1.5)
+					type = "1.5% < ";
+				else if(fluctRate > 1.2)
+					type = "1.2% < ";
+				else if(fluctRate > 1.0)
+					type = "1.0% < ";
+				else if(fluctRate > 0.8)
+					type = "0.8% < ";
+				else if(fluctRate > 0.5)
+					type = "0.5% < ";
+				else
+					type = "< 0.5%";
+
+				jsonStock.put("type",type);
 				jsonData.put(node.getKeywordName(), jsonStock);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 		try {
-			return new JSONObject().put("data",jsonData).toString();
+			return new JSONObject().put("data",jsonData).put("errors",new ArrayList()).toString();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
