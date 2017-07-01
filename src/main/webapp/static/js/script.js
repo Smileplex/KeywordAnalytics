@@ -18,7 +18,7 @@ alert('Data error(s):\n\n' + data.errors.join('\n'));
     return;
 }
 
-graph.data = data.data;
+graph.data = data.data; 
 drawGraph();
 });
 
