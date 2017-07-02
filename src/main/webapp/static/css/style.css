@@ -104,3 +104,33 @@ html.lt-ie9 #graph-container {
 .docs .select-object.missing {
     color: #c7254e;
 }
+
+.stock_price{
+    color: #1e8df9;
+    display: block;
+    overflow: hidden;
+    margin: 3px 0 11px -1px;
+    font-family: Tahoma,Geneva,sans-serif;
+}
+
+.stock_price strong{
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.n_ch .ico{
+    display: inline-block;
+    overflow: hidden;
+    width: 13px;
+    height: 11px;
+    margin: 20px 6px 0 6px;
+    background: url(https://ssl.pstatic.net/sstatic/keypage/outside/scui/stock/img/sp_ico3.png) no-repeat;
+    background-position: -16px 0;
+    text-indent: -9999px;
+    vertical-align: top;
+}
+
+.n_ch em{
+    font-size: 16px;
+    font-style:normal;
+}

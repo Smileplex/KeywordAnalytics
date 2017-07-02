@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by DongwooSeo on 7/2/2017.
@@ -83,14 +80,18 @@ public class StockJsonServiceImpl implements StockJsonService{
     private String makeStockJson() {
         JSONObject jsonData = new JSONObject();
         for(StockMapping node : nodes){
+            Collection<String> _dependLinks = dependLinks.get(node.getKeywordName());
+            Collection<String> _dependedLinks = dependedLinks.get(node.getKeywordName());
+            String docs = generateDocs(node, _dependLinks, _dependedLinks);
             JSONObject jsonStock = new JSONObject();
             try {
-                jsonStock.put("depends", dependLinks.get(node.getKeywordName()));
-                jsonStock.put("dependedOnBy", dependedLinks.get(node.getKeywordName()));
-                jsonStock.put("docs","<h2>Anzelma <em>Group 4 long name for docs</em></h2>↵↵<div class=\"alert alert-warning\">No documentation for this object</div>↵↵<h3>Depends on</h3>↵↵<ul>↵<li><a href=\"#obj-Eponine\" class=\"select-object\" data-name=\"Eponine\">Eponine</a></li>↵<li><a href=\"#obj-Thenardier\" class=\"select-object\" data-name=\"Thenardier\">Thenardier</a></li>↵<li><a href=\"#obj-Mme-Thenardier\" class=\"select-object\" data-name=\"Mme.Thenardier\">Mme.Thenardier</a></li>↵</ul>↵↵<h3>Depended on by <em>(none)</em></h3></br>");
+                jsonStock.put("depends", _dependLinks);
+                jsonStock.put("dependedOnBy", _dependedLinks);
+                jsonStock.put("docs",docs);
                 jsonStock.put("name", node.getKeywordName());
                 jsonStock.put("type",getGroupType(node.getStockDetail().getFluctRate()));
                 jsonData.put(node.getKeywordName(), jsonStock);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -101,6 +102,39 @@ public class StockJsonServiceImpl implements StockJsonService{
             e.printStackTrace();
         }
         return null;
+    }
+
+    private String generateDocs(StockMapping node, Collection<String> dependLinks, Collection<String> dependedLinks) {
+        String docs = "";
+        docs+="<h2>"+node.getKeywordName()+" <em>"+node.getStockDetail().getCode()+"</em></h2>";
+        docs+="<span class='stock_price'><strong>"+String.format("%,d",node.getStockDetail().getPricePrev())+"</strong>" +
+                "<span class='n_ch'><span class='ico'></span><em>"+String.format("%,d",node.getStockDetail().getFluct())+"</em>" +
+                "<em>("+node.getStockDetail().getFluctRate()+"%)</em></span>" +
+                "</span>";
+        docs+="<div class=\"alert alert-warning\">";
+        docs+="<img src="+node.getStockDetail().getChartDaily()+"/>&nbsp;&nbsp;&nbsp;&nbsp;";
+        docs+="<img src="+node.getStockDetail().getChartWeekly()+"/>&nbsp;&nbsp;&nbsp;&nbsp;";
+        docs+="<img src="+node.getStockDetail().getChartMonthly()+"/>";
+        docs+="</div>";
+        docs+="<h3>Depends on</h3>";
+        docs+="<ul>";
+        docs = putLinks(dependLinks, docs);
+        docs+="</ul>";
+        docs+="<h3>Depended on by</h3>";
+        docs+="<ul>";
+        docs = putLinks(dependedLinks, docs);
+        docs+="</ul>";
+        return docs;
+
+    }
+
+    private String putLinks(Collection<String> links, String docs) {
+        for(String link : links){
+            docs+="<li>";
+            docs+="<a href=\"#obj-"+link+"\" class=\"select-object\" data-name=\""+link+"\">"+link+"</a>";
+            docs+="</li>";
+        }
+        return docs;
     }
 
     private String getGroupType(double fluctRate) {
