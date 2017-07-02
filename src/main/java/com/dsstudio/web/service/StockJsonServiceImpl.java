@@ -85,7 +85,7 @@ public class StockJsonServiceImpl implements StockJsonService{
         for(StockMapping node : nodes){
             JSONObject jsonStock = new JSONObject();
             try {
-                jsonStock.put("dependLinks", dependLinks.get(node.getKeywordName()));
+                jsonStock.put("depends", dependLinks.get(node.getKeywordName()));
                 jsonStock.put("dependedOnBy", dependedLinks.get(node.getKeywordName()));
                 jsonStock.put("docs","<h2>Anzelma <em>Group 4 long name for docs</em></h2>↵↵<div class=\"alert alert-warning\">No documentation for this object</div>↵↵<h3>Depends on</h3>↵↵<ul>↵<li><a href=\"#obj-Eponine\" class=\"select-object\" data-name=\"Eponine\">Eponine</a></li>↵<li><a href=\"#obj-Thenardier\" class=\"select-object\" data-name=\"Thenardier\">Thenardier</a></li>↵<li><a href=\"#obj-Mme-Thenardier\" class=\"select-object\" data-name=\"Mme.Thenardier\">Mme.Thenardier</a></li>↵</ul>↵↵<h3>Depended on by <em>(none)</em></h3></br>");
                 jsonStock.put("name", node.getKeywordName());
