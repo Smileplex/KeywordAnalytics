@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed03f0a6-a376-4315-af15-4fd83c43ccf0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dsstudio/web/service/StockJsonService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dsstudio/web/service/StockJsonServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/KeywordAnalytics.war" afterPath="$PROJECT_DIR$/target/KeywordAnalytics.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/KeywordAnalytics/WEB-INF/classes/com/dsstudio/web/controller/AppAjaxController.class" afterPath="$PROJECT_DIR$/target/KeywordAnalytics/WEB-INF/classes/com/dsstudio/web/controller/AppAjaxController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/dsstudio/web/controller/AppAjaxController.class" afterPath="$PROJECT_DIR$/target/classes/com/dsstudio/web/controller/AppAjaxController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dsstudio/web/controller/AppAjaxController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dsstudio/web/controller/AppAjaxController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/newIndex.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/newIndex.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/KeywordAnalytics/WEB-INF/views/newIndex.jsp" afterPath="$PROJECT_DIR$/target/KeywordAnalytics/WEB-INF/views/newIndex.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +21,8 @@
       <file leaf-file-name="AppAjaxController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dsstudio/web/controller/AppAjaxController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="510">
+              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#641#642#0" expanded="true" />
@@ -103,8 +95,8 @@
       <file leaf-file-name="StockJsonServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dsstudio/web/service/StockJsonServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
+            <state relative-caret-position="837">
+              <caret line="66" column="57" lean-forward="true" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1128,7 +1120,7 @@
       <workItem from="1498811741423" duration="17000" />
       <workItem from="1498915314934" duration="7275000" />
       <workItem from="1498933909899" duration="7410000" />
-      <workItem from="1498994057338" duration="6842000" />
+      <workItem from="1498994057338" duration="6994000" />
     </task>
     <task id="LOCAL-00001" summary="Force graph has been modified with new logic from ajaxController.">
       <created>1498919552785</created>
@@ -1151,7 +1143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498940655156</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactoring! StockJsonService has been added.">
+      <created>1499001137433</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1499001137433</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1160,11 +1159,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57083000" />
+    <option name="totallyTimeSpent" value="57235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="0" width="2894" height="1741" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1189,7 +1187,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37225807" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21324041" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21324041" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1212,7 +1210,8 @@
     <MESSAGE value="Force graph has been modified with new logic from ajaxController." />
     <MESSAGE value="Renaming script.js.css to script.js , this file is for controlling d3.js" />
     <MESSAGE value="Type added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Type added." />
+    <MESSAGE value="Refactoring! StockJsonService has been added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring! StockJsonService has been added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1627,8 +1626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dsstudio/web/controller/AppAjaxController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="510">
+          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#641#642#0" expanded="true" />
@@ -1639,8 +1638,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dsstudio/web/service/StockJsonServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
+        <state relative-caret-position="837">
+          <caret line="66" column="57" lean-forward="true" selection-start-line="66" selection-start-column="57" selection-end-line="66" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
