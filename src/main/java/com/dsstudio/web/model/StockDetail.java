@@ -29,6 +29,7 @@ public class StockDetail {
 	private int priceMin;
 	private int fluct;
 	private double fluctRate;
+	private int riseFall;
 	private String chartDaily;
 	private String chartWeekly;
 	private String chartMonthly;
@@ -88,6 +89,12 @@ public class StockDetail {
 	}
 	public void setFluctRate(double fluctRate) {
 		this.fluctRate = fluctRate;
+	}
+	public int getRiseFall() {
+		return riseFall;
+	}
+	public void setRiseFall(int riseFall) {
+		this.riseFall = riseFall;
 	}
 	public String getChartDaily() {
 		return chartDaily;

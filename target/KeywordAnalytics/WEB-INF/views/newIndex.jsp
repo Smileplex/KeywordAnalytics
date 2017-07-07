@@ -19,6 +19,10 @@
     must use Internet Explorer, make it version 9 or greater).
 </div>
 <![endif]-->
+<div class="search_wrapper">
+    <input type="text" id="stockKeyword"/>
+    <button id='btnSearch' class='btnSearch'>search</button>
+</div>
 <div id="split-container">
     <a class="btn btn-default nav-button" id="nav-list" href="list.php">
         View list

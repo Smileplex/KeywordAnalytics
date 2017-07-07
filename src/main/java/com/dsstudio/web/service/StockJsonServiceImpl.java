@@ -107,10 +107,31 @@ public class StockJsonServiceImpl implements StockJsonService{
     private String generateDocs(StockMapping node, Collection<String> dependLinks, Collection<String> dependedLinks) {
         String docs = "";
         docs+="<h2>"+node.getKeywordName()+" <em>"+node.getStockDetail().getCode()+"</em></h2>";
-        docs+="<span class='stock_price'><strong>"+String.format("%,d",node.getStockDetail().getPricePrev())+"</strong>" +
-                "<span class='n_ch'><span class='ico'></span><em>"+String.format("%,d",node.getStockDetail().getFluct())+"</em>" +
-                "<em>("+node.getStockDetail().getFluctRate()+"%)</em></span>" +
+
+        if(node.getStockDetail().getRiseFall()==2)
+            docs+="<span class='stock_price up'>";
+        else if(node.getStockDetail().getRiseFall()==3)
+            docs+="<span class='stock_price mid'>";
+        else if(node.getStockDetail().getRiseFall()==5)
+            docs+="<span class='stock_price'>";
+        docs+="<strong>"+String.format("%,d",node.getStockDetail().getPricePrev())+"</strong>" +
+                "<span class='n_ch'>";
+        if(node.getStockDetail().getRiseFall()==2)
+            docs+="<span class='ico up'></span>";
+        else if(node.getStockDetail().getRiseFall()==3)
+            docs+="<span class='ico'></span>";
+        else if(node.getStockDetail().getRiseFall()==5)
+            docs+="<span class='ico'></span>";
+        docs+=  "<em>"+String.format("%,d",node.getStockDetail().getFluct())+"</em>" +
+                "<em>("+node.getStockDetail().getFluctRate()+"%)</em>" +
                 "</span>";
+        docs+= "</span>";
+        docs+="<ul class='stock_additional'>";
+        docs+="<li><em>전일종가</em>"+String.format("%,d", node.getStockDetail().getPricePrev())+"</li>";
+        docs+="<li><em>고가</em><span class='up'>"+String.format("%,d", node.getStockDetail().getPriceMax())+"</span></li>";
+        docs+="<li><em>저가</em><span class='down'>"+String.format("%,d", node.getStockDetail().getPriceMin())+"</span></li>";
+        docs+="</ul>";
+
         docs+="<div class=\"alert alert-warning\">";
         docs+="<img src="+node.getStockDetail().getChartDaily()+"/>&nbsp;&nbsp;&nbsp;&nbsp;";
         docs+="<img src="+node.getStockDetail().getChartWeekly()+"/>&nbsp;&nbsp;&nbsp;&nbsp;";

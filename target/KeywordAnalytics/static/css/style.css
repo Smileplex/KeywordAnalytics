@@ -104,3 +104,74 @@ html.lt-ie9 #graph-container {
 .docs .select-object.missing {
     color: #c7254e;
 }
+
+.stock_price{
+    color: #1e8df9;
+    display: block;
+    overflow: hidden;
+    margin: 3px 0 11px -1px;
+    font-family: Tahoma,Geneva,sans-serif;
+}
+
+.stock_price strong{
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.stock_price.up{
+    color:#f93345;
+}
+
+.n_ch .ico{
+    display: inline-block;
+    overflow: hidden;
+    width: 13px;
+    height: 11px;
+    margin: 20px 6px 0 6px;
+    background: url(https://ssl.pstatic.net/sstatic/keypage/outside/scui/stock/img/sp_ico3.png) no-repeat;
+    background-position: -16px 0;
+    text-indent: -9999px;
+    vertical-align: top;
+}
+
+.n_ch .up{
+    background-position: 0 0;
+}
+
+.n_ch em{
+    font-size: 16px;
+    font-style:normal;
+}
+
+.stock_additional{
+    font-family: Tahoma,Geneva,sans-serif;
+}
+.stock_additional li{
+    display: inline-block;
+    list-style: none;
+    margin-right:50px;
+}
+.stock_additional li em{
+    font-size: 12px;
+    font-family: 굴림, gulim, helvetica, sans-serif;`
+    color:#999!important;
+}
+
+.stock_additional li span.up{
+    color: #f93345;
+}
+
+.stock_additional li span.down{
+    color: #1e8df9;
+}
+
+.stock_additional li em{
+    font-style:normal;
+    display: block;
+    color: #999!important;
+    margin-bottom: 5px;
+}
+
+.search_wrapper{
+    text-align: center;
+}
