@@ -114,7 +114,7 @@ public class StockJsonServiceImpl implements StockJsonService{
             docs+="<span class='stock_price mid'>";
         else if(node.getStockDetail().getRiseFall()==5)
             docs+="<span class='stock_price'>";
-        docs+="<strong>"+String.format("%,d",node.getStockDetail().getPricePrev())+"</strong>" +
+        docs+="<strong>"+String.format("%,d",node.getStockDetail().getPrice())+"</strong>" +
                 "<span class='n_ch'>";
         if(node.getStockDetail().getRiseFall()==2)
             docs+="<span class='ico up'></span>";
@@ -131,6 +131,11 @@ public class StockJsonServiceImpl implements StockJsonService{
         docs+="<li><em>고가</em><span class='up'>"+String.format("%,d", node.getStockDetail().getPriceMax())+"</span></li>";
         docs+="<li><em>저가</em><span class='down'>"+String.format("%,d", node.getStockDetail().getPriceMin())+"</span></li>";
         docs+="</ul>";
+//        docs+="<ul class='stock_additional'>";
+//        docs+="<li><em>전일종가</em>"+String.format("%,d", node.getStockDetail().getPricePrev())+"</li>";
+//        docs+="<li><em>고가</em><span class='up'>"+String.format("%,d", node.getStockDetail().getPriceMax())+"</span></li>";
+//        docs+="<li><em>저가</em><span class='down'>"+String.format("%,d", node.getStockDetail().getPriceMin())+"</span></li>";
+//        docs+="</ul>";
 
         docs+="<div class=\"alert alert-warning\">";
         docs+="<img src="+node.getStockDetail().getChartDaily()+"/>&nbsp;&nbsp;&nbsp;&nbsp;";
